@@ -1,5 +1,29 @@
 <head>
   <title>Subir imagen</title>
+  <html>
+<head>
+  <script src="https://widget.Cloudinary.com/v2.0/global/all.js"></script>
+</head>
+<body>
+  <button id="upload_widget">Subir imagen</button>
+  <script>
+    const widget = cloudinary.createUploadWidget({
+      cloudName: 'TU_CLOUD_NAME',
+      uploadPreset: 'ml_default'
+    }, (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log('URL:', result.info.secure_url);
+        alert('Subida exitosa: ' + result.info.secure_url);
+      }
+    });
+
+    document.getElementById('upload_widget').addEventListener('click', () => {
+      widget.open();
+    }, false);
+  </script>
+</body>
+</html>
+
   <style>
     body {
       font-family: sans-serif;
